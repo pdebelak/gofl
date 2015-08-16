@@ -10,6 +10,10 @@ Play Conway's Game of Life. See details on [wikipedia](https://en.wikipedia.org/
 
 Go to `localhost:3000` to play.
 
+## Run tests
+
+Right now all logic is in javascript. Run `rake test:js` to open [jasmine](http://jasmine.github.io/) specs in browser.
+
 ## Plans
 
 1. Default starting configurations
