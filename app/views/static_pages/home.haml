@@ -1,0 +1,13 @@
+%ul.actions
+  %li
+    %button#run Run
+  %li
+    %button#stop Stop
+  %li
+    %button#reset Reset
+= label_tag :x, "Width"
+= text_field_tag :x, 60, id: "x"
+= label_tag :y, "Height"
+= text_field_tag :y, 40, id: "y"
+%button#set-board Set Board
+#gofl

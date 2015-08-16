@@ -1,0 +1,25 @@
+$alive-color: #000000;
+
+.cell-row {
+  height: 15px;
+}
+
+.cell {
+  height: 15px;
+  width: 15px;
+  border: 1px solid $alive-color;
+  display: inline-block;
+}
+
+.alive {
+  background: $alive-color;
+}
+
+.actions {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  li {
+    display: inline;
+  }
+}
