@@ -26,3 +26,7 @@ group :development, :test do
   gem "spring"
 end
 
+group :test do
+  gem "memory_test_fix"
+  gem "sqlite3"
+end
