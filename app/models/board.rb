@@ -27,6 +27,14 @@ class Board
     @slug ||= calculate_slug
   end
 
+  def height
+    board.length
+  end
+
+  def width
+    board[0].length
+  end
+
   private
 
   def repository

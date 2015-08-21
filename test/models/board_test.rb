@@ -34,4 +34,14 @@ class BoardTest < Minitest::Test
       assert_equal board.slug, "test-board2"
     end
   end
+
+  def test_height
+    board = Board.new(name: "Test Board", board: [[false],[false]])
+    assert_equal board.height, 2
+  end
+
+  def test_width
+    board = Board.new(name: "Test Board", board: [[false],[false]])
+    assert_equal board.width, 1
+  end
 end
