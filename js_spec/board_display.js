@@ -10,15 +10,11 @@ describe('Gofl.BoardDisplay', function() {
 
   beforeEach(function() {
     display = new Gofl.BoardDisplay('#test-board');
+    display.setBoard([[false, false, false],[false, false, false],[false, false, false]]);
   });
 
   afterEach(function() {
     testBoard.innerHTML = '';
-  });
-
-  it('starts with a 60x40 board', function() {
-    expect(display.board.length).toEqual(40);
-    expect(display.board[0].length).toEqual(60);
   });
 
   it('displays the board in the passed in container', function() {
@@ -56,6 +52,12 @@ describe('Gofl.BoardDisplay', function() {
       display.setBoard([[true, false, false],[false, false, false],[false, false, false]]);
       var firstCell = testBoard.getElementsByClassName('cell')[0];
       expect(firstCell.classList.contains('alive')).toBe(true);
+    });
+
+    it('can reduce the size of the existing board', function() {
+      display.setBoard([[false, false],[false, false]]);
+      expect(display.board.length).toEqual(2);
+      expect(display.board[0].length).toEqual(2);
     });
   });
 

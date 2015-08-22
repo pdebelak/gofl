@@ -9,6 +9,13 @@ document.addEventListener('page:change', function() {
 
     var display = new Gofl.BoardDisplay('#gofl');
     var boardMaker = new Gofl.BoardMaker();
+    var boardData = document.getElementById('gofl').dataset.board;
+    if (boardData) {
+      var loadedBoard = JSON.parse(boardData);
+      display.setBoard(loadedBoard.board);
+    } else {
+      display.setBoard(boardMaker.sizeBoard(60,40));
+    }
 
     var running = false;
     var runner = null;

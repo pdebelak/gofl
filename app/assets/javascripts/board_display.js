@@ -4,22 +4,23 @@ Gofl.BoardDisplay = function(selector) {
 
   var output = document.querySelector(selector);
 
-  var INITIAL_ROW_SIZE = 60;
-  var INITIAL_COL_SIZE = 40;
   var boardMaker = new Gofl.BoardMaker();
 
   _this.board = [];
   _this.allowClick = true;
   _this.setBoard = function(board) {
-    for(var i=0;i<board.length;i++) {
-      _this.board[i] = _this.board[i] || [];
-      for(var j=0;j<board[0].length;j++) {
-        _this.board[i][j] = board[i][j];
+    if(board.length === _this.board.length && board[0].length === _this.board[0].length) {
+      for(var i=0;i<board.length;i++) {
+        _this.board[i] = _this.board[i] || [];
+        for(var j=0;j<board[0].length;j++) {
+          _this.board[i][j] = board[i][j];
+        }
       }
+    } else {
+      _this.board = board;
     }
     displayBoard();
   }
-  _this.setBoard(boardMaker.sizeBoard(INITIAL_ROW_SIZE,INITIAL_COL_SIZE));
 
   function displayBoard() {
     var renderedRows = output.getElementsByClassName('cell-row');
@@ -33,13 +34,6 @@ Gofl.BoardDisplay = function(selector) {
         var row = rows[rows.length - 1];
         for(var j=0;j<_this.board[i].length;j++) {
           row.innerHTML += '<div class="cell"></div>'
-          var cell = document.querySelector('.cell:last-of-type');
-          cell.addEventListener('click', function() {
-            if(_this.allowClick) {
-              this.classList.toggle('alive');
-              recalculateBoard();
-            }
-          });
         }
       }
       var cells = document.getElementsByClassName('cell');

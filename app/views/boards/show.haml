@@ -1,0 +1,13 @@
+%ul.actions
+  %li
+    %button#run Run
+  %li
+    %button#stop Stop
+  %li
+    %button#reset Reset
+= label_tag :x, "Width"
+= text_field_tag :x, @board.height, id: "x"
+= label_tag :y, "Height"
+= text_field_tag :y, @board.width, id: "y"
+%button#set-board Set Board
+#gofl{ data: { board: { board: @board.board, height: @board.height, width: @board.width }.to_json } }
