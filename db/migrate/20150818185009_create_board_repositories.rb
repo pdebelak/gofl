@@ -3,7 +3,8 @@ class CreateBoardRepositories < ActiveRecord::Migration
     create_table :board_repositories do |t|
       t.string :name
       t.string :slug
-      t.text :board, default: []
+      t.boolean :board, array: true, default: []
+      t.string :board_type
 
       t.timestamps
     end

@@ -7,3 +7,8 @@
     = csrf_meta_tags
   %body
     = yield
+    %h2 Examples
+    %ul
+      - Board.examples.each do |board|
+        %li= link_to board.name, board_path(board.slug)
+

@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20150818185009) do
   create_table "board_repositories", force: :cascade do |t|
     t.string   "name"
     t.string   "slug"
-    t.text     "board",      default: "--- []\n"
+    t.boolean  "board",      default: [], array: true
+    t.string   "board_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

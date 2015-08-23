@@ -6,6 +6,10 @@ class Board
       repository.load_from_attributes(attributes)
     end
 
+    def examples
+      repository.examples
+    end
+
     def repository
       @repository ||= BoardRepository
     end
@@ -13,10 +17,12 @@ class Board
 
   attr_reader :name, :board
 
-  def initialize(name: nil, board: nil, slug: nil)
+  def initialize(name: nil, board: nil, slug: nil, example: false, board_type: nil)
     @name = name
     @board = board
     @slug = slug
+    @example = example
+    @board_type = board_type
   end
 
   def publish
@@ -35,14 +41,26 @@ class Board
     board[0].length
   end
 
+  def example?
+    @example ||= @board_type == "example"
+  end
+
   private
+
+  def board_type
+    @board_type ||= set_type
+  end
+
+  def set_type
+    "example" if @example
+  end
 
   def repository
     self.class.repository
   end
 
   def as_repository
-    repository.new(name: name, board: board, slug: slug)
+    repository.new(name: name, board: board, slug: slug, board_type: board_type)
   end
 
   def calculate_slug(num: nil)

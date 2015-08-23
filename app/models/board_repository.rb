@@ -1,6 +1,4 @@
 class BoardRepository < ActiveRecord::Base
-  serialize :board
-
   validates_uniqueness_of :slug
 
   class << self
@@ -12,9 +10,13 @@ class BoardRepository < ActiveRecord::Base
     def slug_taken?(slug)
       !!load_from_attributes(slug: slug)
     end
+
+    def examples
+      where(board_type: "example").map(&:to_board)
+    end
   end
 
   def to_board
-    Board.new(name: name, board: board, slug: slug)
+    Board.new(name: name, board: board, slug: slug, board_type: board_type)
   end
 end
