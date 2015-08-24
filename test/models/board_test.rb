@@ -1,16 +1,7 @@
 require_relative "../fast_test_helper"
-require_relative "../support/test_board_repository"
 require_relative "../../app/models/board"
 
-class BoardTest < Minitest::Test
-  def setup
-    Board.repository = TestBoardRepository
-  end
-
-  def teardown
-    Board.repository = nil
-  end
-
+class BoardTest < GoflFastTest
   def test_creates_slug
     board = Board.new(name: "Test Board", board: [])
     assert_equal "test-board", board.slug
@@ -35,6 +26,11 @@ class BoardTest < Minitest::Test
     end
   end
 
+  def test_slug_with_nil_name
+    board = Board.new
+    assert_equal board.slug, nil
+  end
+
   def test_height
     board = Board.new(name: "Test Board", board: [[false],[false]])
     assert_equal board.height, 2
@@ -43,5 +39,17 @@ class BoardTest < Minitest::Test
   def test_width
     board = Board.new(name: "Test Board", board: [[false],[false]])
     assert_equal board.width, 1
+  end
+
+  def test_generate_generates_correct_dimensions
+    board = Board.generate(height: 20, width: 30)
+    assert_equal board.height, 20
+    assert_equal board.width, 30
+  end
+
+  def test_generate_sets_all_dead
+    board = Board.generate(height: 20, width: 30)
+    assert_equal board.board[0][0], false
+    assert_equal board.board[-1][-1], false
   end
 end

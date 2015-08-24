@@ -10,6 +10,10 @@ class Board
       repository.examples
     end
 
+    def generate(height:, width:)
+      Board.new(board: Array.new(height) { Array.new(width, false)} )
+    end
+
     def repository
       @repository ||= BoardRepository
     end
@@ -17,12 +21,11 @@ class Board
 
   attr_reader :name, :board
 
-  def initialize(name: nil, board: nil, slug: nil, example: false, board_type: nil)
+  def initialize(name: nil, board: nil, slug: nil, example: false)
     @name = name
     @board = board
     @slug = slug
     @example = example
-    @board_type = board_type
   end
 
   def publish
@@ -42,28 +45,21 @@ class Board
   end
 
   def example?
-    @example ||= @board_type == "example"
+    @example
   end
 
   private
-
-  def board_type
-    @board_type ||= set_type
-  end
-
-  def set_type
-    "example" if @example
-  end
 
   def repository
     self.class.repository
   end
 
   def as_repository
-    repository.new(name: name, board: board, slug: slug, board_type: board_type)
+    repository.new(name: name, board: board, slug: slug, example: @example)
   end
 
   def calculate_slug(num: nil)
+    return unless name
     # see http://stackoverflow.com/questions/4308377/ruby-post-title-to-slug
     # for where this code came from
     @slug = name.downcase.strip.gsub(" ", "-".gsub(/[^\w-]/, "")) + "#{num}"

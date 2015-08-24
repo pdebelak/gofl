@@ -24,4 +24,10 @@ class BoardsControllerTest < ActionController::TestCase
     xhr :get, :show, id: board.slug
     assert_template layout: false
   end
+
+  def test_find_redirects_to_show_route
+    board = Board.load(name: "Test Board")
+    post :find, slug: board.slug
+    assert_redirected_to board_path(board.slug)
+  end
 end
