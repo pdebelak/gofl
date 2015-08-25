@@ -14,9 +14,10 @@ gem "turbolinks"
 
 gem "puma"
 gem "rack-timeout"
-gem 'rails_12factor', group: :production
+gem "rails_12factor", group: :production
 
 gem "haml"
+gem "bootstrap-sass", "~> 3.3.5"
 
 group :development, :test do
   gem "pry"

@@ -25,7 +25,10 @@ Gofl.BoardDisplay = function(selector) {
   function displayBoard() {
     var renderedRows = output.getElementsByClassName('cell-row');
     var colLength = renderedRows.length;
-    var rowLength = (renderedRows[0] || []).length;
+    var rowLength = 0;
+    if (renderedRows[0]) {
+      rowLength = renderedRows[0].getElementsByClassName('cell').length;
+    }
     if(!(colLength === _this.board.length && rowLength === _this.board[0].length)) {
       output.innerHTML = '';
       for(var i=0,len=_this.board.length;i<len;i++) {

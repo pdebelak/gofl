@@ -6,26 +6,31 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %ul.actions
-      %li
-        %button#run Run
-      %li
-        %button#stop Stop
-      %li
-        %button#reset Reset
-    = label_tag :x, "Width"
-    = text_field_tag :x, @board.height, id: "x"
-    = label_tag :y, "Height"
-    = text_field_tag :y, @board.width, id: "y"
-    %button#set-board Set Board
-    %h4 See an example
-    = form_tag find_boards_path do
-      = label_tag :slug, "Select example"
-      = select_tag :slug, options_for_select(ExampleBoardDecorator.example_options, @board.slug)
-      = submit_tag "Select"
-    #gofl{ data: { board: { board: @board.board, height: @board.height, width: @board.width }.to_json } }
-    -# %h2 Examples
-    -# %ul
-    -#   - Board.examples.each do |board|
-    -#     %li= link_to board.name, board_path(board.slug)
-    = yield
+    %header.header
+      .container
+        %h1= link_to "Game of Life", root_path
+    %main.container.main
+      .row
+        .col-sm-6
+          = form_tag find_boards_path, class: "form-inline" do
+            = label_tag :slug, "See an example"
+            = select_tag :slug, options_for_select(ExampleBoardDecorator.example_options, @board.slug), class: "form-control"
+            = submit_tag "Select", class: "btn btn-primary"
+        .col-sm-6
+          %ul.actions
+            %li
+              %button#run.btn.btn-success Run
+            %li
+              %button#stop.btn.btn-danger Stop
+            %li
+              %button#reset.btn.btn-warning Reset
+      #gofl.board{ data: { board: { board: @board.board, height: @board.height, width: @board.width }.to_json } }
+      .form-inline
+        .form-group
+          = label_tag :x, "Width"
+          = text_field_tag :x, @board.height, id: "x", class: "form-control"
+        .form-group
+          = label_tag :y, "Height"
+          = text_field_tag :y, @board.width, id: "y", class: "form-control"
+        %button#set-board.btn.btn-default Change Board Size
+      = yield

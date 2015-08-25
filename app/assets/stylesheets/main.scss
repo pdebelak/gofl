@@ -1,4 +1,29 @@
-$alive-color: #000000;
+$alive-color: #2E8B57;
+$cell-border-color: lighten($alive-color, 60%);
+$brand-success: $alive-color;
+
+.main {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.header {
+  background: $alive-color;
+  a {
+    color: $cell-border-color;
+    &:hover {
+      color: darken($cell-border-color, 10%);
+      text-decoration: none;
+    }
+  }
+}
+
+
+.board {
+  white-space: nowrap;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 
 .cell-row {
   height: 15px;
@@ -7,7 +32,7 @@ $alive-color: #000000;
 .cell {
   height: 15px;
   width: 15px;
-  border: 1px solid $alive-color;
+  border: 1px solid $cell-border-color;
   display: inline-block;
 }
 

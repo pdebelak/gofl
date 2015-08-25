@@ -24,7 +24,7 @@ document.addEventListener('page:change', function() {
     runBtn.addEventListener('click', function(e) {
       e.preventDefault();
       if(!running) {
-        running = true;
+        toggleRunning();
         runner = new Gofl.Runner(display.board);
         runInterval = setInterval(function() {
           display.setBoard(runner.nextStep());
@@ -34,7 +34,7 @@ document.addEventListener('page:change', function() {
 
     stopBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      running = false;
+      toggleRunning();
       clearInterval(runInterval);
     });
 
@@ -54,5 +54,10 @@ document.addEventListener('page:change', function() {
         display.setBoard(board);
       }
     });
+
+    function toggleRunning() {
+      running = !running;
+      display.allowClick = !display.allowClick;
+    }
   })();
 });
