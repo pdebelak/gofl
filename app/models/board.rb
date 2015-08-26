@@ -28,7 +28,7 @@ class Board
     @example = example
   end
 
-  def publish
+  def share
     as_repository.save
   end
 

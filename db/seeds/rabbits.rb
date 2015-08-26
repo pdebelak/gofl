@@ -40,4 +40,4 @@ rabbit_board = [
   [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
   [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 ]
-Board.new(name: "Rabbits", board: rabbit_board, example: true).publish
+Board.new(name: "Rabbits", board: rabbit_board, example: true).share

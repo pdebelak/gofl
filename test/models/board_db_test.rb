@@ -12,7 +12,7 @@ class BoardDBTest < ActiveSupport::TestCase
 
   def create_board(args={})
     attributes = { name: "Test Board", board: @board }.merge(args)
-    Board.new(attributes).publish
+    Board.new(attributes).share
   end
 
   def test_loads_by_name

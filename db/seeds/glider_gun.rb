@@ -40,4 +40,4 @@ glider_gun_board = [
   [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
   [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 ]
-Board.new(name: "Glider Gun", board: glider_gun_board, example: true).publish
+Board.new(name: "Glider Gun", board: glider_gun_board, example: true).share

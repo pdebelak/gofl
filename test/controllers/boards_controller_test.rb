@@ -11,7 +11,7 @@ class BoardsControllerTest < ActionController::TestCase
   end
 
   def test_show_finds_board_by_slug
-    @board.publish
+    @board.share
     get :show, id: @board.slug
     assert_equal @board.name, assigns(:board).name
     assert_equal @board.board, assigns(:board).board

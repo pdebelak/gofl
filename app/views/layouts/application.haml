@@ -15,7 +15,7 @@
           = form_tag find_boards_path, class: "form-inline" do
             = label_tag :slug, "See an example"
             = select_tag :slug, options_for_select(ExampleBoardDecorator.example_options, @board.slug), class: "form-control"
-            = submit_tag "Select", class: "btn btn-primary"
+            = submit_tag "Go", class: "btn btn-primary"
         .col-sm-6
           %ul.actions
             %li
