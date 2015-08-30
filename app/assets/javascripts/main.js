@@ -50,7 +50,7 @@ document.addEventListener('page:change', function() {
       var y = yInput.value;
       if(!running) {
         runner = null;
-        var board = boardMaker.sizeBoard(x,y);
+        var board = boardMaker.sizeBoard(x,y,display.board);
         display.setBoard(board);
       }
     });
