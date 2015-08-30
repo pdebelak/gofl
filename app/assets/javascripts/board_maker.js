@@ -20,15 +20,17 @@ Gofl.BoardMaker = function() {
   }
 
   function changeBoard(x,y,board) {
+    changeColumns(x,board);
+    changeRows(x,y,board);
+    return board;
+  }
+
+  function changeColumns(x,board) {
     var currentX = board[0].length;
     var currentY = board.length;
-    var ydiff = y - currentY;
     var xdiff = x - currentX;
     var beginningX = Math.floor(xdiff / 2);
     var endingX = Math.floor(xdiff / 2) + (xdiff % 2);
-    var beginningY = Math.floor(ydiff / 2);
-    var endingY = Math.floor(ydiff/ 2) + (ydiff % 2);
-    console.log(beginningX, endingX, beginningY, endingY);
     if (beginningX > -1) {
       for(var i=0;i<currentY;i++) {
         for(var j=0;j<beginningX;j++) {
@@ -55,6 +57,13 @@ Gofl.BoardMaker = function() {
         }
       }
     }
+  }
+
+  function changeRows(x,y,board) {
+    var currentY = board.length;
+    var ydiff = y - currentY;
+    var beginningY = Math.floor(ydiff / 2);
+    var endingY = Math.floor(ydiff/ 2) + (ydiff % 2);
     if (beginningY > -1) {
       for(var i=0;i<beginningY;i++) {
         board.unshift(blankRow(x));
@@ -73,7 +82,6 @@ Gofl.BoardMaker = function() {
         board.pop();
       }
     }
-    return board;
   }
 
   function blankRow(length) {
