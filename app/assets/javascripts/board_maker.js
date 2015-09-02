@@ -29,8 +29,15 @@ Gofl.BoardMaker = function() {
     var currentX = board[0].length;
     var currentY = board.length;
     var xdiff = x - currentX;
-    var beginningX = Math.floor(xdiff / 2);
-    var endingX = Math.floor(xdiff / 2) + (xdiff % 2);
+    var sign = xdiff > -1 ? 1 : -1;
+    var beginningX, endingX;
+    if(sign === 1) {
+      beginningX = Math.floor(Math.abs(xdiff) / 2) * sign;
+      endingX = (Math.floor(Math.abs(xdiff) / 2) + (Math.abs(xdiff) % 2)) * sign;
+    } else {
+      beginningX = (Math.floor(Math.abs(xdiff) / 2) + (Math.abs(xdiff) % 2)) * sign;
+      endingX = Math.floor(Math.abs(xdiff) / 2) * sign;
+    }
     if (beginningX > -1) {
       for(var i=0;i<currentY;i++) {
         for(var j=0;j<beginningX;j++) {
@@ -62,8 +69,15 @@ Gofl.BoardMaker = function() {
   function changeRows(x,y,board) {
     var currentY = board.length;
     var ydiff = y - currentY;
-    var beginningY = Math.floor(ydiff / 2);
-    var endingY = Math.floor(ydiff/ 2) + (ydiff % 2);
+    var sign = ydiff > -1 ? 1 : -1;
+    var beginningY, endingY;
+    if(sign === 1) {
+      beginningY = Math.floor(Math.abs(ydiff) / 2) * sign;
+      endingY = (Math.floor(Math.abs(ydiff) / 2) + (Math.abs(ydiff) % 2)) * sign;
+    } else {
+      beginningY = (Math.floor(Math.abs(ydiff) / 2) + (Math.abs(ydiff) % 2)) * sign;
+      endingY = Math.floor(Math.abs(ydiff) / 2) * sign;
+    }
     if (beginningY > -1) {
       for(var i=0;i<beginningY;i++) {
         board.unshift(blankRow(x));

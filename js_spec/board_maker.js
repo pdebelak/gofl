@@ -47,5 +47,9 @@ describe('Gofl.BoardMaker', function() {
       var newBoard = board.sizeBoard(5,5,currentBoard);
       expect(board.sizeBoard(3,3,newBoard)).toEqual([[false,true,false],[false,true,false],[false,true,false]]);
     });
+
+    it('can reduce the size assymetrically', function() {
+      expect(board.sizeBoard(2,2,currentBoard)).toEqual([[true,false],[true,false]]);
+    });
   });
 });

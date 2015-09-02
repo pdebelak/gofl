@@ -3,7 +3,7 @@ document.addEventListener('page:change', function() {
     var runBtn = document.getElementById('run');
     var stopBtn = document.getElementById('stop');
     var resetBtn = document.getElementById('reset');
-    var setBoardBtn = document.getElementById('set-board');
+    var setBoardForm = document.getElementById('resize-form');
     var xInput = document.getElementById('x');
     var yInput = document.getElementById('y');
 
@@ -45,7 +45,8 @@ document.addEventListener('page:change', function() {
       }
     });
 
-    setBoardBtn.addEventListener('click', function() {
+    setBoardForm.addEventListener('submit', function(e) {
+      e.preventDefault();
       var x = xInput.value;
       var y = yInput.value;
       if(!running) {
