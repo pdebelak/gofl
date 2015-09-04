@@ -13,12 +13,6 @@ Go to `localhost:3000` to play.
 
 ## Run tests
 
-Run `rake` to run ruby specs. I tried to decouple as many of the specs as reasonable
-from the database and rails in general.
+Run `rake` to run all ruby and javascript tests. I tried to decouple as many of the tests as reasonable from the database and rails in general. You can run those specs only with `rake test:fast`.
 
-Run `rake test:js` to open [jasmine](http://jasmine.github.io/) specs in browser.
-
-## Plans
-
-1. Default starting configurations
-2. Save starting configurations
+Run `rake test:js` to run just javascript specs in console by themselves. If you want to see the specs in the browser (the console error messages aren't too helpful), you can run `rake test:browser_js`.
