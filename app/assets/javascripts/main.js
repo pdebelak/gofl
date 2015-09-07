@@ -4,6 +4,7 @@ document.addEventListener('page:change', function() {
     var stopBtn = document.getElementById('stop');
     var resetBtn = document.getElementById('reset');
     var setBoardForm = document.getElementById('resize-form');
+    var newBoardForm = document.getElementById('share-board');
     var xInput = document.getElementById('x');
     var yInput = document.getElementById('y');
 
@@ -55,6 +56,24 @@ document.addEventListener('page:change', function() {
         display.setBoard(board);
       }
     });
+
+    newBoardForm.addEventListener('submit', function(e) {
+      var nameField = document.getElementById('board_name');
+      for (var i=0,len=display.board.length;i<len;i++) {
+        newBoardForm.innerHTML += boardField(i, display.board[i]);
+      }
+      newBoardForm.querySelector('.form-group').classList.remove('has-error');
+      if (!nameField.value) {
+        e.preventDefault();
+        newBoardForm.querySelector('.form-group').classList.add('has-error');
+        return false;
+      }
+      return true;
+    });
+
+    function boardField(num, val) {
+      return '<input multiple="multiple" type="hidden" name="board[board][' + num + ']" value="' + val + '"></input>'
+    }
 
     function toggleRunning() {
       running = !running;

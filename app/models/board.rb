@@ -1,4 +1,8 @@
+require "active_model"
+
 class Board
+  include ActiveModel::Model
+
   class << self
     attr_writer :repository
 

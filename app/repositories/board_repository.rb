@@ -1,5 +1,7 @@
 class BoardRepository < ActiveRecord::Base
   validates_uniqueness_of :slug
+  validates_presence_of :name
+  validates_presence_of :board
 
   class << self
     def load_from_attributes(attributes)

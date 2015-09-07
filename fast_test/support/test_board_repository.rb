@@ -1,9 +1,17 @@
 class TestBoardRepository
   class << self
-    def new(*args)
-    end
+    attr_accessor :should_save
+
+    should_save = true
 
     def slug_taken?(slug)
     end
+  end
+
+  def initialize(*args)
+  end
+
+  def save
+    self.class.should_save
   end
 end

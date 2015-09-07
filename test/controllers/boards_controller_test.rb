@@ -3,7 +3,16 @@ require "test_helper"
 class BoardsControllerTest < ActionController::TestCase
 
   def setup
+    @request.env["HTTP_REFERER"] = root_path
     @board = Board.new(name: "Test Board", board: [[false],[true]])
+  end
+
+  def teardown
+    BoardRepository.destroy_all
+  end
+
+  def params(name: @board.name, board: { "0" => "false", "1" => "true" })
+    { name: name, board: board }
   end
 
   def load_stubbed(&block)
@@ -36,5 +45,22 @@ class BoardsControllerTest < ActionController::TestCase
       post :find, slug: @board.slug
       assert_redirected_to board_path(@board.slug)
     end
+  end
+
+  def test_create_creates_board
+    post :create, board: params
+    new_board = BoardRepository.last.to_board
+    assert_equal @board.name, new_board.name
+    assert_equal @board.board, new_board.board
+  end
+
+  def test_create_redirects_to_board
+    post :create, board: params
+    assert_redirected_to board_path(BoardRepository.last.slug)
+  end
+
+  def test_create_redirects_back_without_save
+    post :create, board: params(name: nil)
+    assert_redirected_to @request.referer
   end
 end
