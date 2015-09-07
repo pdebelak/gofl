@@ -10,12 +10,14 @@ class BoardsController < ApplicationController
   end
 
   def create
-    response = CreateBoard.create(board_params)
+    response = ShareBoard.share(board_params)
     response.success do |board|
       redirect_to board_path(board.slug)
     end
-    response.error do
-      redirect_to :back
+    response.error do |board|
+      @board = board
+      @board_for_form = board
+      render :show
     end
   end
 

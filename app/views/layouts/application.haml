@@ -33,9 +33,11 @@
           = label_tag :y, "Height"
           = text_field_tag :y, @board.width, id: "y", class: "form-control"
         = submit_tag "Change Board Size", class: "btn btn-default"
-      = form_for Board.new(name: "board name"), html: { class: "form-inline", id: "share-board" } do |f|
+      %h3 Share this
+      - @board_for_form ||= Board.new
+      = form_tag boards_path, class: "form-inline", id: "share-board" do
         .form-group
-          = f.label :name
-          = f.text_field :name, class: "form-control"
-        = f.submit "Share Board", class: "btn btn-success"
+          = label_tag "board[name]", "Name"
+          = text_field_tag "board[name]", @board_for_form.name, class: "form-control"
+        = submit_tag "Share Board", class: "btn btn-success"
       = yield

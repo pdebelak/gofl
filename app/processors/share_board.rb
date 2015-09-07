@@ -1,6 +1,6 @@
-class CreateBoard
-  def self.create(name:, board:)
-    new(name: name, board: board).create
+class ShareBoard
+  def self.share(name:, board:)
+    new(name: name, board: board).share
   end
 
   def initialize(name:, board:)
@@ -8,7 +8,7 @@ class CreateBoard
     @board = board
   end
 
-  def create
+  def share
     if created_board.share
       @success = true
     end

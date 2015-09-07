@@ -59,16 +59,16 @@ document.addEventListener('page:change', function() {
 
     newBoardForm.addEventListener('submit', function(e) {
       var nameField = document.getElementById('board_name');
+      nameVal = nameField.value;
       for (var i=0,len=display.board.length;i<len;i++) {
         newBoardForm.innerHTML += boardField(i, display.board[i]);
       }
+      document.getElementById('board_name').value = nameVal;
       newBoardForm.querySelector('.form-group').classList.remove('has-error');
       if (!nameField.value) {
         e.preventDefault();
         newBoardForm.querySelector('.form-group').classList.add('has-error');
-        return false;
       }
-      return true;
     });
 
     function boardField(num, val) {

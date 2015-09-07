@@ -59,8 +59,13 @@ class BoardsControllerTest < ActionController::TestCase
     assert_redirected_to board_path(BoardRepository.last.slug)
   end
 
-  def test_create_redirects_back_without_save
+  def test_create_renders_show_without_save
     post :create, board: params(name: nil)
-    assert_redirected_to @request.referer
+    assert_template :show
+  end
+
+  def test_assigns_board_and_board_for_form_without_save
+    post :create, board: params(name: nil)
+    assert_equal assigns(:board), assigns(:board_for_form)
   end
 end
