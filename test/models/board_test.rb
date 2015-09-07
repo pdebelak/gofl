@@ -15,14 +15,7 @@ class BoardDBTest < ActiveSupport::TestCase
     Board.new(attributes).share
   end
 
-  def test_loads_by_name
-    @board = [[false,false],[false,false]]
-    create_board
-    assert_equal @board, Board.load(name: "Test Board").board
-  end
-
   def test_loads_by_slug
-    @board = [[true,true],[true,true]]
     create_board
     assert_equal @board, Board.load(slug: "test-board").board
   end

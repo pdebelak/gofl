@@ -4,13 +4,13 @@ class BoardRepository < ActiveRecord::Base
   validates_presence_of :board
 
   class << self
-    def load_from_attributes(attributes)
-      found = find_by(attributes)
+    def load(slug:)
+      found = find_by(slug: slug)
       found.to_board if found
     end
 
     def slug_taken?(slug)
-      !!load_from_attributes(slug: slug)
+      !!load(slug: slug)
     end
 
     def examples

@@ -2,8 +2,8 @@ class Board
   class << self
     attr_writer :repository
 
-    def load(attributes)
-      repository.load_from_attributes(attributes)
+    def load(slug:)
+      repository.load(slug: slug)
     end
 
     def examples
