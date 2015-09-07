@@ -9,6 +9,7 @@ class TestShareBoard < GoflFastTest
       assert_equal [[false, true], [true, false]], board.board
       assert_equal "Test Board", board.name
     end
+    refute response.error
   end
 
   def test_error
@@ -17,5 +18,7 @@ class TestShareBoard < GoflFastTest
     response.error do |board|
       assert_equal "Test Board", board.name
     end
+    refute response.success
+    TestBoardRepository.should_save = true
   end
 end

@@ -6,6 +6,10 @@ class TestBoardRepository
 
     def slug_taken?(slug)
     end
+
+    def examples
+      []
+    end
   end
 
   def initialize(*args)
