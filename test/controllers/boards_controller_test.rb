@@ -38,13 +38,6 @@ class BoardsControllerTest < ActionController::TestCase
     end
   end
 
-  def test_show_has_no_layout_with_xhr
-    load_stubbed do
-      xhr :get, :show, id: @board.slug
-      assert_template layout: false
-    end
-  end
-
   def test_find_redirects_to_show_route
     load_stubbed do
       post :find, slug: @board.slug
