@@ -2,8 +2,8 @@ require "test_helper"
 
 class BoardDBTest < ActiveSupport::TestCase
 
-  def setup
-    @board = [[true,true],[true,true]]
+  def board
+    [[true,true],[true,true]]
   end
 
   def teardown
@@ -11,13 +11,13 @@ class BoardDBTest < ActiveSupport::TestCase
   end
 
   def create_board(args={})
-    attributes = { name: "Test Board", board: @board }.merge(args)
+    attributes = { name: "Test Board", board: board }.merge(args)
     Board.new(attributes).share
   end
 
   def test_loads_by_slug
     create_board
-    assert_equal @board, Board.load(slug: "test-board").board
+    assert_equal board, Board.load(slug: "test-board").board
   end
 
   def test_can_set_example
